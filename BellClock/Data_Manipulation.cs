@@ -24,7 +24,10 @@ namespace BellClock
             string temp = sr.ReadToEnd();
             sr.Close();
             JArray jarray = new JArray();
-            jarray = JArray.Parse(temp);
+            if (temp != "")
+            {
+                jarray = JArray.Parse(temp);
+            }
             jarray.Add(jobj);
             StreamWriter sw = new StreamWriter(path);
             sw.Write(jarray.ToString(Newtonsoft.Json.Formatting.None));

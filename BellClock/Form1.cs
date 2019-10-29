@@ -16,12 +16,18 @@ namespace BellClock
     public partial class Form1 : Form
     {
         static JArray jarray = new JArray();
+        static DayOfWeek dayofweek;
+        static string SongToPlay = "default.mp3";
         public void WriteBellData_ToList()
         {
             listBox1.Items.Clear();
             StreamReader sr = new StreamReader("./user_data/database_bell.json");
             string temp = sr.ReadToEnd();
-            jarray = JArray.Parse(temp);
+            if(temp!="")
+            { 
+                jarray = JArray.Parse(temp); 
+            }
+            
             foreach (JObject x in jarray)
             {
                 string hour = x.GetValue("hour").ToString();
@@ -44,6 +50,13 @@ namespace BellClock
         public Form1()
         {
             InitializeComponent();
+            var filenames = from fullFilename
+                in Directory.EnumerateFiles("./user_data/sound/")
+                            select Path.GetFileName(fullFilename);
+            foreach (string filename in filenames)
+            {
+                listBox3.Items.Add(filename);
+            }
             WriteBellData_ToList();
         }
 
@@ -51,23 +64,44 @@ namespace BellClock
         {
             //Clock code ->
 
-            timeNow.Text = System.DateTime.Now.ToString("HH:mm:ss");
+            timeNow.Text = System.DateTime.Now.ToString("HH:mm");
             dateNow.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
-            //Code for playing the bell ->
+            dayofweek = DateTime.Now.DayOfWeek;
 
-            foreach(JObject obj in jarray)
+            MessageBox.Show("Inside tick");
+
+            //Code for playing the bell ->
+            
+            foreach (JObject obj in jarray)
             {
-                int i=0;
-                int[] arr = new int[6];
+                int i = 0;
+
                 foreach (int x in obj.GetValue("days"))
                 {
-                    if(x==1)
+                    //MessageBox.Show("Day of week parsing: " + (int)Enum.Parse(typeof(DayOfWeek), DateTime.Now.DayOfWeek.ToString())
+                    //    + " i: " + i + "\n x: " + x);
+;                   if(x==1)
                     {
-                        int t = (int)Enum.Parse(typeof(DayOfWeek), DateTime.Now.DayOfWeek.ToString());
+                        if(i == (int)Enum.Parse(typeof(DayOfWeek), DateTime.Now.DayOfWeek.ToString()))
+                        {
+                            //MessageBox.Show("Inside Days check");
+                            if((int)obj.GetValue("hour")==DateTime.Now.Hour)
+                            {
+                                //MessageBox.Show("Inside hour check\n" + "The minute is: " + DateTime.Now.Minute.ToString()+"  " + (int)obj.GetValue("minute"));
+                                if ((int)obj.GetValue("minute") == (int)DateTime.Now.Minute)
+                                {
+                                    //MessageBox.Show("Playing bell");
+                                    WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+                                    wplayer.URL = "./user_data/sound/" + SongToPlay;
+                                    MessageBox.Show("./user_data/sound/" + SongToPlay);
+                                    wplayer.controls.play();
+                                }
+                            }
+                        }
                     }
+                    i++;
                 }
-
             }
         }
 
@@ -79,6 +113,7 @@ namespace BellClock
             foreach (var x in checkedListBox1.CheckedIndices)
             {
                 int temp = (int)x;
+                //MessageBox.Show(temp.ToString());
                 arr[temp] = 1;
             }
 
@@ -110,7 +145,15 @@ namespace BellClock
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Delete selected register
+            int IndexToDelete = listBox1.SelectedIndex;
+            jarray.RemoveAt(IndexToDelete);
+            string path = "./user_data/database_bell.json";
+            StreamWriter sw = new StreamWriter(path);
+            sw.Write(jarray.ToString(Newtonsoft.Json.Formatting.None));
+            //MessageBox.Show(jarray.ToString());
+            sw.Close();
+            WriteBellData_ToList();
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -132,36 +175,38 @@ namespace BellClock
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = listBox1.SelectedIndex;
-            place_holder_bell_lable.Visible = false;
-            listBox2.Visible = true;
-            listBox2.Items.Clear();
-            int[] arr = new int[6];
-            JObject temp = (JObject)jarray.ElementAt(index);
-            int i = 0;
-            foreach(int x in temp.GetValue("days"))
+            if (listBox1.SelectedIndex >= 0)
             {
-                if(x!=0)
+                int index = listBox1.SelectedIndex;
+                place_holder_bell_lable.Visible = false;
+                listBox2.Visible = true;
+                listBox2.Items.Clear();
+                int[] arr = new int[6];
+                JObject temp = (JObject)jarray.ElementAt(index);
+                int i = 0;
+                foreach (int x in temp.GetValue("days"))
                 {
-                    listBox2.Items.Add(Enum.Parse(typeof(Data_Manipulation.DaysOfWeek), i.ToString()));
+                    if (x != 0)
+                    {
+                        listBox2.Items.Add(Enum.Parse(typeof(Data_Manipulation.DaysOfWeek), i.ToString()));    
+                    }
                     i++;
+
                 }
-                
             }
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
             WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-
             wplayer.URL = "./user_data/sound/pewpewmp3.mp3";
             wplayer.controls.play();
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            
-            MessageBox.Show(i.ToString());
+            SongToPlay = listBox3.SelectedItem.ToString();
+            MessageBox.Show(SongToPlay);
         }
     }
 }
