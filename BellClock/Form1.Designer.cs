@@ -60,6 +60,11 @@ namespace BellClock
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.SelectSong_button = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,6 +74,9 @@ namespace BellClock
             this.groupBox5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // timeNow
@@ -181,6 +189,7 @@ namespace BellClock
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -250,6 +259,38 @@ namespace BellClock
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox7);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.pictureBox1);
+            this.groupBox7.Controls.Add(this.SelectSong_button);
+            resources.ApplyResources(this.groupBox7, "groupBox7");
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.TabStop = false;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // SelectSong_button
+            // 
+            resources.ApplyResources(this.SelectSong_button, "SelectSong_button");
+            this.SelectSong_button.Name = "SelectSong_button";
+            this.SelectSong_button.UseVisualStyleBackColor = true;
+            this.SelectSong_button.Click += new System.EventHandler(this.SelectSong_button_Click);
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
@@ -267,6 +308,9 @@ namespace BellClock
             this.groupBox5.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -297,6 +341,11 @@ namespace BellClock
         private GroupBox groupBox6;
         private ListBox listBox3;
         private Button button4;
+        private TabPage tabPage3;
+        private GroupBox groupBox7;
+        private OpenFileDialog openFileDialog1;
+        private Button SelectSong_button;
+        private PictureBox pictureBox1;
     }
 }
 

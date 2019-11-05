@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Windows.Forms;
+using NAudio.Gui;
+using WaveFormRendererLib;
 
 namespace BellClock
 {
@@ -58,6 +60,9 @@ namespace BellClock
                 listBox3.Items.Add(filename);
             }
             WriteBellData_ToList();
+
+            openFileDialog1.Title = "בחירת שיר מהמחשב";
+            openFileDialog1.Filter = "mp3 Files (*.mp3)|*.mp3";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -69,7 +74,7 @@ namespace BellClock
 
             dayofweek = DateTime.Now.DayOfWeek;
 
-            MessageBox.Show("Inside tick");
+            //MessageBox.Show("Inside tick");
 
             //Code for playing the bell ->
             
@@ -206,7 +211,34 @@ namespace BellClock
         private void button4_Click_1(object sender, EventArgs e)
         {
             SongToPlay = listBox3.SelectedItem.ToString();
-            MessageBox.Show(SongToPlay);
+            MessageBox.Show("בחרת בצלצול" + SongToPlay);
+        }
+
+        private void SelectSong_button_Click(object sender, EventArgs e)
+        {
+            //openFileDialog1.ShowDialog();
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                listBox3.Items.Add(openFileDialog1.SafeFileName);
+            }
+
+            var maxPeakProvider = new MaxPeakProvider();
+            var rmsPeakProvider = new RmsPeakProvider(200); // e.g. 200
+            var samplingPeakProvider = new SamplingPeakProvider(200); // e.g. 200
+            var averagePeakProvider = new AveragePeakProvider(4); // e.g. 4
+
+            var myRendererSettings = new StandardWaveFormRendererSettings();
+            myRendererSettings.Width = 640;
+            myRendererSettings.TopHeight = 32;
+            myRendererSettings.BottomHeight = 32;
+            myRendererSettings.BackgroundColor = Color.White;
+
+            var renderer = new WaveFormRenderer();
+            var audioFilePath = "./user_data/sound/" + openFileDialog1.SafeFileName;
+            var image = renderer.Render(audioFilePath, myRendererSettings);
+
+            pictureBox1.Image = image;
+
         }
     }
 }
