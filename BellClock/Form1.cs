@@ -236,7 +236,6 @@ namespace BellClock
             var renderer = new WaveFormRenderer();
             var audioFilePath = "./user_data/sound/" + openFileDialog1.SafeFileName;
             var image = renderer.Render(audioFilePath, myRendererSettings);
-
             pictureBox1.Image = image;
 
         }

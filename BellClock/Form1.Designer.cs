@@ -62,9 +62,9 @@ namespace BellClock
             this.button3 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.SelectSong_button = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.SelectSong_button = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -274,9 +274,11 @@ namespace BellClock
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
             // 
-            // openFileDialog1
+            // pictureBox1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
             // 
             // SelectSong_button
             // 
@@ -285,11 +287,9 @@ namespace BellClock
             this.SelectSong_button.UseVisualStyleBackColor = true;
             this.SelectSong_button.Click += new System.EventHandler(this.SelectSong_button_Click);
             // 
-            // pictureBox1
+            // openFileDialog1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
