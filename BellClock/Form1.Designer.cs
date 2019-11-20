@@ -65,6 +65,11 @@ namespace BellClock
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.SelectSong_button = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.menuItem4 = new System.Windows.Forms.MenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -291,10 +296,41 @@ namespace BellClock
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // mainMenu1
+            // 
+            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1,
+            this.menuItem3});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem2});
+            resources.ApplyResources(this.menuItem1, "menuItem1");
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 0;
+            resources.ApplyResources(this.menuItem2, "menuItem2");
+            // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 1;
+            this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem4});
+            resources.ApplyResources(this.menuItem3, "menuItem3");
+            // 
+            // menuItem4
+            // 
+            this.menuItem4.Index = 0;
+            resources.ApplyResources(this.menuItem4, "menuItem4");
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.Controls.Add(this.tabControl1);
+            this.Menu = this.mainMenu1;
             this.Name = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -346,6 +382,11 @@ namespace BellClock
         private OpenFileDialog openFileDialog1;
         private Button SelectSong_button;
         private PictureBox pictureBox1;
+        private MainMenu mainMenu1;
+        private MenuItem menuItem1;
+        private MenuItem menuItem2;
+        private MenuItem menuItem3;
+        private MenuItem menuItem4;
     }
 }
 

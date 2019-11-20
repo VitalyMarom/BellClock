@@ -219,7 +219,7 @@ namespace BellClock
             //openFileDialog1.ShowDialog();
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                listBox3.Items.Add(openFileDialog1.SafeFileName);
+                //listBox3.Items.Add(openFileDialog1.SafeFileName); //Addes the song to the list TODO: a function to call
             }
 
             var maxPeakProvider = new MaxPeakProvider();
