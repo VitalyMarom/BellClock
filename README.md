@@ -9,6 +9,6 @@ All you do is choose an hour and click the button, choose the song and you'r don
 </div>
 # ScreenShots
 
-![GitHub Logo](/images/logo.png)
+![first screen](1.png)
 
 
