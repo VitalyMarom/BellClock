@@ -7,8 +7,8 @@ All you do is choose an hour and click the button, choose the song and you'r don
 <div dir="rtl">
 ## מדובר במערכת פשוטה המתאימה למחשב ווינדוס על מנת לעזור לבתי ספר ישנים להשמיע צילצולים של שירים ללא השקעה כספית משמעותית חדשה
 </div>
-# ScreenShots
 
+# ScreenShots
 
 ![first screen](1.PNG)
 
