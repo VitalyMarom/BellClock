@@ -8,7 +8,9 @@ All you do is choose an hour and click the button, choose the song and you'r don
 ## מדובר במערכת פשוטה המתאימה למחשב ווינדוס על מנת לעזור לבתי ספר ישנים להשמיע צילצולים של שירים ללא השקעה כספית משמעותית חדשה
 </div>
 # ScreenShots
-
+#
 ![first screen](1.PNG)
+![first screen](2.PNG)
+![first screen](3.PNG)
 
 
